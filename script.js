@@ -7,24 +7,24 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     const password = document.getElementById('password').value;
 
     // Hashage du mot de passe en SHA-512
-    const hashedPassword = sha512(password);
-
-    fetch('/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password: hashedPassword })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = '/dashboard';
-        } else {
-            document.getElementById('error-message').innerText = 'Nom d\'utilisateur ou mot de passe incorrect.';
-        }
-    })
-    .catch(error => console.error('Erreur:', error));
+    sha512(password).then(hashedPassword => {
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password: hashedPassword })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '/dashboard';
+            } else {
+                document.getElementById('error-message').innerText = 'Nom d\'utilisateur ou mot de passe incorrect.';
+            }
+        })
+        .catch(error => console.error('Erreur:', error));
+    });
 });
 
 function sha512(str) {
