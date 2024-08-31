@@ -1,0 +1,6 @@
+[
+    {
+        "username": "admin",
+        "password": "567d75abadd57f854db4557a3b2d7550f5e428509598e74f455107456e96d84aa56bbe6118cada915493637743a638e6dd0a18e15fd349ce9eb7f57e2c9dc1cc" // Haché avec SHA-512
+    }
+]
